@@ -91,8 +91,3 @@ function h = prepareScene3()
     set(h,'Position',[300, 600, 500, 400]);
     view([1 -1 1]);
 end
-
-function drawPlane()
-    xx=axis; 
-    fill3([xx(1),xx(1),xx(2),xx(2)],[xx(3),xx(4),xx(4),xx(3)],[1 1 1 1]*0,'g','FaceAlpha',0.2,'EdgeColor','g');
-end
