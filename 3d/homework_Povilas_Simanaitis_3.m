@@ -22,10 +22,12 @@ function Povilas_Simanaitis_Individual_work43
       object = surf(nX,nY,nZ,'EdgeColor','y','FaceColor','r','FaceAlpha',0.6);
       pause(0.02); 
     end  
-     [X,Y,Z] = transform(X,Y,Z,rotateVertical(pi));
-     delete(object);
-     object = surf(X,Y,Z,'EdgeColor','b','FaceColor','r','FaceAlpha',0.6);  
-    for t=1:1:100
+	
+	[X,Y,Z] = transform(X,Y,Z,rotateVertical(pi));
+    delete(object);
+    object = surf(X,Y,Z,'EdgeColor','b','FaceColor','r','FaceAlpha',0.6);  
+    
+	for t=1:1:100
        [nX,nY,nZ] = transform(X,Y,Z,scale(2-(t/100)));
        [nX,nY,nZ] = transform(nX,nY,nZ,rotate(-t));
       delete(object);
@@ -35,10 +37,10 @@ function Povilas_Simanaitis_Individual_work43
 end
 
 function [X,Y,Z] = transform(X,Y,Z,T)
-   XYZ=[reshape(X,1,prod(size(X))); % visu rato tasku homogeniniu koordinaciu masyvas 
-     reshape(Y,1,prod(size(Y)));
-     reshape(Z,1,prod(size(Z)));
-     ones(1,prod(size(Z)))];
+	XYZ=[reshape(X,1,prod(size(X))); % visu rato tasku homogeniniu koordinaciu masyvas 
+		reshape(Y,1,prod(size(Y)));
+		reshape(Z,1,prod(size(Z)));
+		ones(1,prod(size(Z)))];
     A1 = T*XYZ;
     X = reshape(A1(1,:),size(X));
     Y = reshape(A1(2,:),size(Y));
