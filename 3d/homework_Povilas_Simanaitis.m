@@ -1,8 +1,6 @@
-function Povilas_Simanaitis_Individual_work41
-
 % Rotating polygon moves in the square.
-%  If the polygon hits the side of the square, it deforms and changes the direction of motion
-
+% If the polygon hits the side of the square, it deforms and changes the direction of motion
+function Povilas_Simanaitis_Individual_work41
     prepareScene();
     [x, y] = polygon(2);
     animate(x, y);
@@ -72,9 +70,15 @@ end
 function T = rotate(tx, ty, d)
     betag=30*d;
     beta=betag*pi/180;
-    T1=[1 0 -tx; 0 1 -ty; 0 0 1];
-    T2=[cos(beta), -sin(beta), 0;sin(beta) cos(beta) 0; 0 0 1];
-    T3=[1 0 tx; 0 1 ty; 0 0  1];
+    T1=[1 0 -tx; 
+        0 1 -ty;
+        0 0  1];
+    T2=[cos(beta), -sin(beta), 0;
+        sin(beta) cos(beta)    0;
+            0        0         1];
+    T3=[1 0 tx; 
+        0 1 ty;
+        0 0  1];
     T=T3*T2*T1;
 end
 

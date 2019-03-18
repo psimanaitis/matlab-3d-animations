@@ -1,13 +1,12 @@
-function Povilas_Simanaitis_Individual_work43
-
 % An object rotates about vertical axis and rotates(expands) until doubles. 
 % Then the object turns over (color of an object is changed after the turnover) 
 % Ten it changes the rotation direction and shrinks until it retrieves the initial size.
 % Draw a ‘fisheye’ projection on the screen from a given (fixed) point.
-
-    scene = prepareScene3();
+function Povilas_Simanaitis_Individual_work43
+    prepareScene3();
     [X,Y,Z] = getObject();
     object = surf(X,Y,Z,'EdgeColor','y','FaceColor','r','FaceAlpha',0.6);
+    
     for t=1:1:100
       [nX,nY,nZ] = transform(X,Y,Z,scale(1+(t/100)));
       [nX,nY,nZ] = transform(nX,nY,nZ,rotate(t*3));
@@ -22,12 +21,9 @@ function Povilas_Simanaitis_Individual_work43
       object = surf(nX,nY,nZ,'EdgeColor','y','FaceColor','r','FaceAlpha',0.6);
       pause(0.02); 
     end  
-	
-	[X,Y,Z] = transform(X,Y,Z,rotateVertical(pi));
-    delete(object);
-    object = surf(X,Y,Z,'EdgeColor','b','FaceColor','r','FaceAlpha',0.6);  
     
-	for t=1:1:100
+    [X,Y,Z] = transform(X,Y,Z,rotateVertical(pi));
+    for t=1:1:100
        [nX,nY,nZ] = transform(X,Y,Z,scale(2-(t/100)));
        [nX,nY,nZ] = transform(nX,nY,nZ,rotate(-t));
       delete(object);
@@ -37,10 +33,10 @@ function Povilas_Simanaitis_Individual_work43
 end
 
 function [X,Y,Z] = transform(X,Y,Z,T)
-	XYZ=[reshape(X,1,prod(size(X))); % visu rato tasku homogeniniu koordinaciu masyvas 
-		reshape(Y,1,prod(size(Y)));
-		reshape(Z,1,prod(size(Z)));
-		ones(1,prod(size(Z)))];
+   XYZ=[reshape(X,1,prod(size(X))); % visu rato tasku homogeniniu koordinaciu masyvas 
+     reshape(Y,1,prod(size(Y)));
+     reshape(Z,1,prod(size(Z)));
+     ones(1,prod(size(Z)))];
     A1 = T*XYZ;
     X = reshape(A1(1,:),size(X));
     Y = reshape(A1(2,:),size(Y));
@@ -48,14 +44,14 @@ function [X,Y,Z] = transform(X,Y,Z,T)
 end
 
 function T = rotate(beta)
-  T=[cos(beta)  -sin(beta) 0    0;     
-      sin(beta)  cos(beta)  0       0;
-    0   0  1     0;
-    0   0  0     1];
+  T=[ cos(beta) -sin(beta)  0  0;     
+      sin(beta)  cos(beta)  0  0;
+         0       0          1  0;
+         0       0          0  1];
 end
 
 function T = rotateVertical(beta)
-  T=[cos(beta)     0   -sin(beta)   0;    
+  T=[  cos(beta)     0   -sin(beta)   0;    
           0          1        0       0;
         sin(beta)    0    cos(beta)   0;
         0            0        0       1];
@@ -79,7 +75,7 @@ function [X,Y,Z] = getObject()
     Y = U.*sin(V);
 end
 
-function h = prepareScene3()
+function prepareScene3()
     clc,close all;
     h=figure(1); 
     grid on;
