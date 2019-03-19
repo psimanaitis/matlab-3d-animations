@@ -12,28 +12,32 @@ function Povilas_Simanaitis_Individual_work42
     cone = surf(X, Y, Z+5,'EdgeColor','B','FaceColor','r','FaceAlpha',0);
     
     [p1, p2, p3, p4] = getPyramid();
-    [np1, np2, np3, np4] = pyramidTranform(p1, p2, p3, p4,  shift(3, 3, 3));
+    t = -1.5;
+    [np1, np2, np3, np4] = pyramidTranform(p1, p2, p3, p4, shift(-2*t-5, -2*t-5, -t));
     pyramidFigure = drawPiramid(np1,np2,np3,np4);    
-    
+    gif('povsim42.gif');
     for t=-1.5:0.04:-0.25
         [np1, np2, np3, np4] = pyramidTranform(p1, p2, p3, p4, shift(-2*t-5, -2*t-5, -t));
         delete(pyramidFigure);
-        pyramidFigure = drawPiramid(np1,np2,np3,np4);    
-        pause(0.04); 
+        pyramidFigure = drawPiramid(np1,np2,np3,np4);
+        gif;
+        pause(0.02); 
     end
     
     for t=1:2:100
         delete(cone);
         cone = surf(X, Y, (Z+5)./(1+(10*t/500)),'EdgeColor','B','FaceColor','r','FaceAlpha',0);
-        pause(0.04); 
+        gif;
+        pause(0.02); 
     end
     
     p1=np1; p2=np2; p3=np3; p4=np4;
     for t=1:8:1000
         [np1, np2, np3, np4] = pyramidTranform(p1, p2, p3, p4, rotate(-pi/180*t));
         delete(pyramidFigure);
-        pyramidFigure = drawPiramid(np1,np2,np3,np4);    
-        pause(0.04); 
+        pyramidFigure = drawPiramid(np1,np2,np3,np4);
+        gif;
+        pause(0.02); 
     end
 end
 

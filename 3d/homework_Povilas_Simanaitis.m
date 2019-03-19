@@ -1,10 +1,13 @@
 % Rotating polygon moves in the square.
 % If the polygon hits the side of the square, it deforms and changes the direction of motion
+
+% https://se.mathworks.com/matlabcentral/fileexchange/63239-gif using this
+% for generating gifs
 function Povilas_Simanaitis_Individual_work41
+    clc,close all;
     prepareScene();
     [x, y] = polygon(2);
     animate(x, y);
-    clc,close all;
 end
 
 function prepareScene
@@ -25,9 +28,11 @@ end
 function animate(xpp, ypp)
    h1=[];
    h2=[];
-   for t=0:0.1:60   
+   gif('povsim41.gif');
+   for t=0:0.3:60   
      [x, y] = calculaNewCircle(xpp, ypp, sin(t/6)*6, sin(t/6)*6, t);  
      [h1, h2] = reDrawCircle(h1,h2, x, y);
+     gif;
      pause(0.01); 
    end
 end
